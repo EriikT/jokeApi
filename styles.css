@@ -20,7 +20,7 @@ body {
     text-shadow: black 2px 5px;
 
 }
-/* Media Query for larger screens (desktops) */
+/* larger font size for larger screens */
 @media (min-width: 768px) {
     #title {
         font-size: 145px; /* Larger size for desktops */
@@ -49,8 +49,25 @@ body {
     font-size: 25px;
     font-weight: bold;
     text-align: center;
-    max-width: 80%; 
+    max-width: 80%;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
 }
+
+/* hides punchline */
+#punchline {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease; 
+}
+
+/* shows punchline when hovering over */
+#joke:hover #punchline {
+    visibility: visible;
+    opacity: 1;
+}
+
 
 #footer {
     position: absolute;
