@@ -2,7 +2,7 @@ document.getElementById('submitBtn').addEventListener('click', fetchJoke);
 
 //Loads the last joke from LocalStorage when page loads
 window.onload = function(){
-    let savedJoke = localStorage.getItem('item');
+    let savedJoke = localStorage.getItem('joke');
     if(savedJoke) {
         document.getElementById('joke').innerText = savedJoke;
     }
