@@ -1,12 +1,10 @@
 document.getElementById('submitBtn').addEventListener('click', fetchJoke);
 
-// loads the last joke from LocalStorage when the page loads
+//Loads the last joke from LocalStorage when page loads
 window.onload = function() {
-    let savedJokeSetup = localStorage.getItem('jokeSetup');
-    let savedJokePunchline = localStorage.getItem('jokePunchline');
-    if (savedJokeSetup && savedJokePunchline) {
-        document.getElementById('setup').innerText = savedJokeSetup;
-        document.getElementById('punchline').innerText = savedJokePunchline;
+    let savedJoke = localStorage.getItem('joke');
+    if(savedJoke) {
+        document.getElementById('joke').innerText = savedJoke;
     }
 }
 
@@ -15,16 +13,11 @@ async function fetchJoke() {
         const response = await fetch("https://official-joke-api.appspot.com/jokes/random");
         const data = await response.json();
 
-        const setup = data.setup;
-        const punchline = data.punchline;
+        const joke = data.setup + " " + data.punchline + " 😂";
+        document.getElementById('joke').innerText = joke;
 
-        document.getElementById('setup').innerText = setup;
-        document.getElementById('punchline').innerText = punchline;
-
-        // stores setup and punchline separately in localStorage
-        localStorage.setItem('jokeSetup', setup);
-        localStorage.setItem('jokePunchline', punchline);
-
+        // Stores the joke in LocalStorage
+        localStorage.setItem('joke', joke);
     } catch (error) {
         document.getElementById('joke').innerText = "Oops! Couldn't fetch a joke. Try again!";
         console.error("Error fetching joke:", error);
